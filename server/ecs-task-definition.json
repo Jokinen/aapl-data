@@ -1,0 +1,30 @@
+{
+  "family": "aapl-data-server",
+  "executionRoleArn": "arn:aws:iam::553518720614:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "aapl-data-server",
+      "image": "553518720614.dkr.ecr.eu-north-1.amazonaws.com/aapl-data-server:latest",
+      "portMappings": [
+        {
+          "containerPort": 3001,
+          "hostPort": 3001,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "aapl-data",
+          "awslogs-region": "eu-north-1",
+          "awslogs-stream-prefix": "aapl-data-server"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024"
+}

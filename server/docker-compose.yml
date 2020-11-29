@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  app:
+    container_name: aapl-server
+    build:
+      context: .
+      args:
+        - PORT=${PORT}
+        - ALPHA_VANTAGE_API_KEY=${ALPHA_VANTAGE_API_KEY}
+        - ALPHA_VANTAGE_API_URL=${ALPHA_VANTAGE_API_URL}
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '3001:3001'
+      

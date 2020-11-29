@@ -1,0 +1,30 @@
+{
+  "family": "aapl-data-ui",
+  "executionRoleArn": "arn:aws:iam::553518720614:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "aapl-data-ui",
+      "image": "553518720614.dkr.ecr.eu-north-1.amazonaws.com/aapl-data-ui:latest",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "aapl-data",
+          "awslogs-region": "eu-north-1",
+          "awslogs-stream-prefix": "aapl-data-ui"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024"
+}
