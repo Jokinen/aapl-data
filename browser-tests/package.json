@@ -1,0 +1,17 @@
+{
+  "name": "browser-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "testcafe \"chrome --window-size='1920,1080'\" ./src --live",
+    "test:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" ./src -s takeOnFails=true"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "testcafe": "^1.9.4"
+  }
+}
