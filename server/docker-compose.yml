@@ -9,6 +9,7 @@ services:
         - PORT=${PORT}
         - ALPHA_VANTAGE_API_KEY=${ALPHA_VANTAGE_API_KEY}
         - ALPHA_VANTAGE_API_URL=${ALPHA_VANTAGE_API_URL}
+      target: development
     volumes:
       - '.:/app'
       - '/app/node_modules'

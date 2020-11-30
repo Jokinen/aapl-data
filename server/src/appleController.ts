@@ -7,7 +7,6 @@ function validateRequest(req: Request) {
 }
 
 async function appleController(req: Request, res: Response) {
-  console.log("request");
   try {
     validateRequest(req);
     const { data } = await AlphaVantageService.getAppleData();
