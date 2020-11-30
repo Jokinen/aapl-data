@@ -43,3 +43,5 @@ docker-compose up --build
 ## Deployment
 
 The both the server and UI packages are deployed to AWS whenever new commits are merged into `main`.
+
+Deployed service: http://aapl-data-ui-lb-399870562.eu-north-1.elb.amazonaws.com/
