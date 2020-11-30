@@ -8,7 +8,7 @@ class AlphaVantageService {
   constructor() {
     this.apiClient = axios.create({
       baseURL: configs.alphaVantageApiUrl,
-      timeout: 1000,
+      timeout: 5000,
       paramsSerializer: (params: Record<string, string>) =>
         new URLSearchParams({
           ...params,
