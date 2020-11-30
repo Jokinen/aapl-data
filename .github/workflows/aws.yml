@@ -115,7 +115,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: aapl-data-ui
         IMAGE_TAG: latest
-        REACT_APP_API_URL: http://aapl-load-balancer-478109940.eu-north-1.elb.amazonaws.com/
+        REACT_APP_API_URL: http://aapl-data-lb-475010882.eu-north-1.elb.amazonaws.com
       run: |
         # Build a docker container and
         # push it to ECR so that it can
@@ -143,3 +143,25 @@ jobs:
         service: aapl-data-ui-ecs-service
         cluster: aapl-data-cluster
         wait-for-service-stability: true
+
+  browserTest:
+    needs: [deployServer, deployUI]
+    name: Browser test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install dependencies
+      run: |
+        cd browser-tests
+        npm ci
+    - name: Run browser tests against staging server
+      run: |
+        cd browser-tests
+        npm run test:ci
+      env:
+        BROWSER_TEST_URL: http://aapl-data-ui-lb-399870562.eu-north-1.elb.amazonaws.com
